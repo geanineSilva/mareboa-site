@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Maré Boa · Política de privacidade</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Source+Sans+3:wght@400;600&display=swap">
+<style>
+/* Layout: uma coluna de leitura, faixa de título com a onda da marca */
+:root {
+  --bg: #F1F5F7;
+  --surface: #FFFFFF;
+  --fg: #12283A;
+  --soft: #4F6575;
+  --line: #D4DFE6;
+  --brand: #0E5A7A;
+  --accent: #C9541F;
+  --display: "Barlow Condensed", "Arial Narrow", sans-serif;
+  --body: "Source Sans 3", "Segoe UI", system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #071A28; --surface: #0C2536; --fg: #E3EDF2; --soft: #9DB3C1;
+    --line: #1E3E52; --brand: #4CC3D6; --accent: #FF8A57; color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #071A28; --surface: #0C2536; --fg: #E3EDF2; --soft: #9DB3C1;
+  --line: #1E3E52; --brand: #4CC3D6; --accent: #FF8A57; color-scheme: dark;
+}
+body { margin: 0;  background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.6; }
+.wrap { max-width: 44rem; margin: 0 auto; padding: 0 16px; padding-block: 40px 64px; }
+header { border-bottom: 3px solid var(--brand); padding-bottom: 20px; margin-bottom: 28px; }
+.app { font-family: var(--display); font-weight: 700; font-size: 15px; letter-spacing: .14em; text-transform: uppercase; color: var(--brand); }
+h1 { font-family: var(--display); font-weight: 700; font-size: clamp(34px, 7vw, 46px); line-height: 1.05; margin: 6px 0 10px; text-wrap: balance; }
+.date { color: var(--soft); font-size: 15px; margin: 0; }
+h2 { font-family: var(--display); font-weight: 600; font-size: 25px; margin: 34px 0 8px; color: var(--fg); text-wrap: balance; }
+p, li { max-width: 65ch; }
+ul { padding-left: 1.2em; display: grid; gap: 6px; }
+strong { font-weight: 600; }
+.box { background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--accent); border-radius: 6px; padding: 14px 18px; margin-top: 10px; }
+.box p { margin: 0; }
+.mail { font-weight: 600; color: var(--brand); user-select: all; word-break: break-all; }
+a { color: var(--brand); }
+footer { margin-top: 48px; padding-top: 16px; border-top: 1px solid var(--line); color: var(--soft); font-size: 14px; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header>
+    <div class="app">Maré Boa</div>
+    <h1>Política de privacidade</h1>
+    <p class="date">Última atualização: 12 de outubro de 2026</p>
+  </header>
+
+  <p>O Maré Boa é um aplicativo de pesca que mostra pontos de pesca, clima e maré, e permite guardar favoritos, capturas e avaliações. Esta política explica quais dados o app usa e o que acontece com eles.</p>
+
+  <h2>Dados que coletamos</h2>
+  <p>Só quando você cria uma conta:</p>
+  <ul>
+    <li><strong>Dados da conta:</strong> e-mail e senha. A senha fica protegida pelo Supabase, e nós não temos acesso a ela.</li>
+    <li><strong>Perfil:</strong> apelido, cidade ou bairro e as preferências de pesca que você escolher preencher.</li>
+    <li><strong>Atividade no app:</strong> pontos favoritos, capturas registradas (espécie, peso, comprimento, observação, ponto e data) e avaliações dos pontos (nota e comentário).</li>
+  </ul>
+  <p>Quem usa o app como visitante não envia nenhum desses dados.</p>
+  <p>A <strong>foto de perfil</strong> fica salva só no seu aparelho e não é enviada para nossos servidores.</p>
+  <p>O app não usa a localização do seu aparelho, não mostra anúncios e não vende nem compartilha seus dados para publicidade.</p>
+
+  <h2>Para que usamos</h2>
+  <p>Somente para o app funcionar: entrar na sua conta, guardar seus favoritos, capturas e avaliações, e mostrar para a comunidade a média de avaliações e a movimentação de cada ponto, sem mostrar quem você é.</p>
+
+  <h2>Com quem os dados ficam</h2>
+  <ul>
+    <li><strong>Supabase</strong> (supabase.com) guarda a conta e os dados acima, com acesso restrito ao dono de cada registro.</li>
+    <li><strong>Open-Meteo</strong> (open-meteo.com) recebe só as coordenadas dos pontos de pesca para devolver clima e maré. Nenhum dado seu é enviado.</li>
+    <li><strong>Google Maps</strong> é aberto fora do app quando você toca em "ver no mapa".</li>
+  </ul>
+
+  <h2>Excluir sua conta e seus dados</h2>
+  <p>No app, vá em <strong>Perfil &gt; Excluir minha conta</strong>. A conta e todos os seus favoritos, capturas e avaliações são apagados na hora e para sempre.</p>
+  <div class="box">
+    <p>Sem acesso ao app? Peça a exclusão pelo e-mail <span class="mail">mareboa.app@gmail.com</span>, a partir do endereço da sua conta. Atendemos em até 30 dias.</p>
+  </div>
+
+  <h2>Crianças</h2>
+  <p>O app não é direcionado a menores de 13 anos.</p>
+
+  <h2>Contato</h2>
+  <p>Dúvidas ou pedidos sobre seus dados: <span class="mail">mareboa.app@gmail.com</span></p>
+
+  <footer>Maré Boa · Pesca na Grande Florianópolis</footer>
+</div>
+</body>
+</html>
