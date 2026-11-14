@@ -4,6 +4,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Maré Boa</title>
+<script>
+// Link de "redefinir senha" do e-mail chega aqui; manda para a página certa
+(function () {
+  var h = location.hash;
+  if (/type=recovery/.test(h) || /error_code=/.test(h)) {
+    location.replace("redefinir-senha/" + h);
+  }
+})();
+</script>
 <style>
 :root { --bg: #F1F5F7; --fg: #12283A; --soft: #4F6575; --brand: #0E5A7A; }
 @media (prefers-color-scheme: dark) { :root { --bg: #071A28; --fg: #E3EDF2; --soft: #9DB3C1; --brand: #4CC3D6; } }

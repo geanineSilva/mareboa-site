@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Redefinir senha - Maré Boa</title>
+<style>
+:root { --bg: #F1F5F7; --card: #FFFFFF; --fg: #12283A; --soft: #4F6575; --brand: #0E5A7A; --line: #D5E0E6; --ok: #1F8A5B; --bad: #B4432F; }
+@media (prefers-color-scheme: dark) { :root { --bg: #071A28; --card: #0D2536; --fg: #E3EDF2; --soft: #9DB3C1; --brand: #4CC3D6; --line: #1E3B4E; --ok: #4FC48E; --bad: #F08A72; } }
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--fg); font-family: "Segoe UI", system-ui, sans-serif; }
+main { max-width: 26rem; margin: 0 auto; padding: 48px 16px; }
+.brand { font-size: 28px; font-weight: 700; color: var(--brand); margin: 0 0 24px; }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 20px; padding: 24px; }
+h1 { font-size: 22px; margin: 0 0 8px; }
+p { color: var(--soft); font-size: 16px; line-height: 1.5; margin: 0 0 16px; }
+label { display: block; font-size: 14px; font-weight: 600; margin: 16px 0 6px; }
+.field { position: relative; }
+input { width: 100%; font-size: 16px; padding: 14px 72px 14px 14px; border: 1px solid var(--line); border-radius: 14px; background: var(--bg); color: var(--fg); }
+input:focus { outline: 2px solid var(--brand); border-color: transparent; }
+.toggle { position: absolute; right: 8px; top: 50%; transform: translateY(-50%); background: none; border: 0; color: var(--brand); font-size: 14px; font-weight: 600; cursor: pointer; padding: 8px; }
+.hint { font-size: 13px; margin: 8px 0 0; }
+.hint.ok { color: var(--ok); }
+button.main { width: 100%; margin-top: 24px; padding: 16px; font-size: 16px; font-weight: 600; border: 0; border-radius: 18px; background: var(--brand); color: #fff; cursor: pointer; }
+button.main:disabled { opacity: .5; cursor: default; }
+.msg { font-size: 14px; margin-top: 16px; min-height: 1em; }
+.msg.bad { color: var(--bad); }
+[hidden] { display: none !important; }
+</style>
+</head>
+<body>
+<main>
+  <div class="brand">Maré Boa</div>
+
+  <div class="card" id="loading">
+    <p>Carregando...</p>
+  </div>
+
+  <form class="card" id="form" hidden>
+    <h1>Crie sua nova senha</h1>
+    <p>Escolha uma senha nova para entrar no app.</p>
+
+    <label for="pass">Nova senha</label>
+    <div class="field">
+      <input id="pass" type="password" autocomplete="new-password" minlength="8" required>
+      <button type="button" class="toggle" data-for="pass">Mostrar</button>
+    </div>
+    <p class="hint" id="rule">Mínimo de 8 caracteres</p>
+
+    <label for="pass2">Repita a nova senha</label>
+    <div class="field">
+      <input id="pass2" type="password" autocomplete="new-password" required>
+      <button type="button" class="toggle" data-for="pass2">Mostrar</button>
+    </div>
+
+    <button class="main" id="save" type="submit">Salvar nova senha</button>
+    <div class="msg bad" id="error"></div>
+  </form>
+
+  <div class="card" id="done" hidden>
+    <h1>Senha alterada</h1>
+    <p>Prontinho. Agora é só voltar ao app Maré Boa e entrar com a nova senha.</p>
+    <p>Boas pescarias.</p>
+  </div>
+
+  <div class="card" id="invalid" hidden>
+    <h1>Esse link não vale mais</h1>
+    <p id="invalidText">O link de redefinição expirou ou já foi usado.</p>
+    <p>Abra o app Maré Boa, toque em <strong>Esqueci minha senha</strong> e peça um novo. Use sempre o e-mail mais recente.</p>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function () {
+  var SUPABASE_URL = "https://wicjhqmnecyattviasqu.supabase.co";
+  var SUPABASE_KEY = "sb_publishable_Cf0eujlRYrXOy_cN_09wRw_-_Z9kZbx";
+
+  var $ = function (id) { return document.getElementById(id); };
+  function show(id) {
+    ["loading", "form", "done", "invalid"].forEach(function (k) { $(k).hidden = k !== id; });
+  }
+
+  // Erro devolvido pelo Supabase na URL (ex.: link expirado)
+  var hash = new URLSearchParams(location.hash.replace(/^#/, ""));
+  var query = new URLSearchParams(location.search);
+  if (hash.get("error") || query.get("error")) {
+    show("invalid");
+    return;
+  }
+
+  var client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY, {
+    auth: { flowType: "implicit", detectSessionInUrl: true, persistSession: false }
+  });
+
+  var ready = false;
+  function openForm() {
+    if (ready) return;
+    ready = true;
+    history.replaceState(null, "", location.pathname); // tira o token da barra de endereço
+    show("form");
+    $("pass").focus();
+  }
+
+  client.auth.onAuthStateChange(function (event, session) {
+    if (session && (event === "PASSWORD_RECOVERY" || event === "SIGNED_IN" || event === "INITIAL_SESSION")) {
+      openForm();
+    }
+  });
+
+  // Se em alguns segundos não houver sessão, o link é inválido
+  setTimeout(function () {
+    client.auth.getSession().then(function (r) {
+      if (r.data && r.data.session) openForm();
+      else if (!ready) show("invalid");
+    });
+  }, 2500);
+
+  document.querySelectorAll(".toggle").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var input = $(btn.dataset.for);
+      var hidden = input.type === "password";
+      input.type = hidden ? "text" : "password";
+      btn.textContent = hidden ? "Ocultar" : "Mostrar";
+    });
+  });
+
+  $("pass").addEventListener("input", function () {
+    $("rule").classList.toggle("ok", $("pass").value.length >= 8);
+  });
+
+  $("form").addEventListener("submit", function (e) {
+    e.preventDefault();
+    var p1 = $("pass").value, p2 = $("pass2").value;
+    $("error").textContent = "";
+    if (p1.length < 8) { $("error").textContent = "A senha precisa ter pelo menos 8 caracteres."; return; }
+    if (p1 !== p2) { $("error").textContent = "As senhas não são iguais."; return; }
+
+    $("save").disabled = true;
+    $("save").textContent = "Salvando...";
+    client.auth.updateUser({ password: p1 }).then(function (r) {
+      if (r.error) {
+        var m = (r.error.message || "").toLowerCase();
+        $("error").textContent = m.indexOf("different") >= 0
+          ? "A nova senha precisa ser diferente da anterior."
+          : m.indexOf("session") >= 0 || m.indexOf("expired") >= 0
+            ? "O link expirou. Peça um novo no app."
+            : "Não deu para salvar agora. Tente de novo em instantes.";
+        $("save").disabled = false;
+        $("save").textContent = "Salvar nova senha";
+        return;
+      }
+      client.auth.signOut();
+      show("done");
+    });
+  });
+})();
+</script>
+</body>
+</html>
