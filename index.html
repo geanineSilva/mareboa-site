@@ -67,12 +67,31 @@
 .more { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: 20px; padding: 20px 24px; border-radius: 16px; background: var(--surface-soft); }
 .more p { margin: 0; max-width: 46rem; }
 .quem .card p { margin: 0; color: var(--soft); font-size: 17px; }
+
+/* cards modernos: sem borda, sombra suave, ícone em círculo como no app */
+.feature { border: 0; border-radius: 20px; padding: 24px; box-shadow: 0 1px 2px rgba(6,24,39,.06), 0 8px 24px rgba(6,24,39,.07); transition: transform .2s, box-shadow .2s; }
+.feature:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(6,24,39,.06), 0 14px 32px rgba(6,24,39,.12); }
+.ico { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 50%; background: #DDF3F6; color: var(--primary); margin-bottom: 14px; }
+.ico svg { width: 24px; height: 24px; }
+@media (prefers-reduced-motion: reduce) { .feature, .feature:hover { transition: none; transform: none; } }
+
+/* pescar não precisa ser difícil */
+.pronto { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px; align-items: center; }
+.pronto .lead { margin: 0; font-size: 19px; color: var(--text); }
+.vs { display: grid; gap: 12px; }
+.vs-row { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); align-items: stretch; border-radius: 18px; overflow: hidden; background: var(--surface); box-shadow: 0 1px 2px rgba(6,24,39,.06), 0 8px 24px rgba(6,24,39,.07); }
+.vs-old { padding: 16px 18px; color: var(--soft); background: var(--surface-soft); display: flex; flex-direction: column; justify-content: center; font-size: 15px; }
+.vs-old small { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; opacity: .8; }
+.vs-new { padding: 16px 18px; font-weight: 700; color: var(--primary-dark); display: flex; align-items: center; }
+.vs-note { margin: 2px 0 0; font-size: 13px; color: var(--soft); }
+@media (max-width: 860px) { .pronto { grid-template-columns: minmax(0, 1fr); gap: 22px; } }
+@media (max-width: 480px) { .vs-row { grid-template-columns: minmax(0, 1fr); } .vs-old { padding-bottom: 6px; background: var(--surface); } .vs-new { padding-top: 0; } }
 </style>
 </head>
 <body>
 
 <header class="bar"><div class="wrap">
-  <a class="logo" href="/">MARÉ BOA</a>
+  <a class="logo" href="/" aria-label="Maré Boa">MAR<svg class="e-onda" viewBox="0 0 18 22" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" aria-hidden="true"><path d="M8.5 -2.5 12 -6"/><path d="M1.5 3c2.6-2.2 5-.1 7.5 0s4.9-2.2 7.5 0M1.5 11c2.6-2.2 5-.1 7.5 0s4.9-2.2 7.5 0M1.5 19c2.6-2.2 5-.1 7.5 0s4.9-2.2 7.5 0"/></svg><span class="logo-boa">BOA</span></a>
   <nav class="menu"><a href="#app">O app</a><a href="/pontos/">Pontos de pesca</a><a href="#seguro">É seguro?</a><a class="btn btn-accent" href="#testar">Quero testar</a></nav>
 </div></header>
 
@@ -80,7 +99,7 @@
   <div>
     <div class="where">App de pesca da Grande Florianópolis</div>
     <h1>Qual é a boa de hoje?</h1>
-    <p>Vento, chuva, maré e lua hora a hora, para cada ponto de praia, costão e rio.</p>
+    <p>Maré, vento e lua traduzidos pra você. O Maré Boa mostra se o dia tá bom pra pescar e qual a melhor hora de ir.</p>
     <div class="btns">
       <a class="btn btn-accent" href="#testar">Quero testar</a>
       <a class="btn btn-ghost" href="/pontos/">Ver os pontos</a>
@@ -90,16 +109,31 @@
   <div class="phone"><img src="img/1-inicio.webp" alt="Tela inicial do app Maré Boa" width="540" height="960"></div>
 </div></section>
 
+<section class="wrap section" id="pronto">
+  <div class="pronto">
+    <div>
+      <h2>Pescaria é pra ser divertida</h2>
+      <p class="lead">Ninguém precisa virar especialista em maré, lua ou carta náutica pra curtir uma boa pescaria. O Maré Boa cuida dessa parte e te entrega a resposta pronta, num jeito fácil de entender. Você só escolhe o ponto e aproveita.</p>
+    </div>
+    <div class="vs">
+      <div class="vs-row"><span class="vs-old"><small>Em vez de</small>Tábua de maré cheia de números</span><span class="vs-new">“Amanhã, melhor janela: 5h às 11h”</span></div>
+      <div class="vs-row"><span class="vs-old"><small>Em vez de</small>Mapa de vento colorido</span><span class="vs-new">“Evite agora: vento forte, rajadas de 54 km/h”</span></div>
+      <div class="vs-row"><span class="vs-old"><small>Em vez de</small>Ficar na dúvida se a água tá boa</span><span class="vs-new">“Água pode estar turva: choveu 26 mm em 3 dias”</span></div>
+      <p class="vs-note">Exemplos de respostas do app.</p>
+    </div>
+  </div>
+</section>
+
 <section class="wrap section" id="app">
-  <h2>O que o app faz</h2>
-  <p class="lead">Tudo o que você olharia em vários apps, num lugar só, pensado pra quem pesca na região.</p>
+  <h2>Do tempo ao peixe, tá tudo aqui</h2>
+  <p class="lead">Tudo pra sua pescaria num lugar só, pensado pra quem pesca na Grande Floripa.</p>
   <div class="features">
-    <div class="feature"><b>Previsão de pesca por hora</b><span>A hora boa e a hora de evitar em cada ponto.</span></div>
-    <div class="feature"><b>Maré, vento e chuva</b><span>Tudo junto, ao longo do dia.</span></div>
-    <div class="feature"><b>Fase da lua</b><span>Lua do dia, nascer e pôr do sol.</span></div>
-    <div class="feature"><b>Pontos de pesca</b><span>Praias, costões e rios da região, com o caminho no mapa.</span></div>
-    <div class="feature"><b>Agora no ponto</b><span>Água limpa ou suja, confirmada por quem está lá.</span></div>
-    <div class="feature"><b>Sala de Troféus</b><span>Suas capturas com foto e seus pontos favoritos.</span></div>
+    <div class="feature"><i class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i><b>Previsão de pesca por hora</b><span>A hora boa e a hora de evitar em cada ponto.</span></div>
+    <div class="feature"><i class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9c2-2 4 2 6 0s4 2 6 0 4 2 6 0M3 15c2-2 4 2 6 0s4 2 6 0 4 2 6 0"/></svg></i><b>Maré, vento e chuva</b><span>Tudo junto, ao longo do dia.</span></div>
+    <div class="feature"><i class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg></i><b>Fase da lua</b><span>Lua do dia, nascer e pôr do sol.</span></div>
+    <div class="feature"><i class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-11.5a7 7 0 0 1 14 0C19 14.5 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg></i><b>Pontos de pesca</b><span>Praias, costões e rios da região, com o caminho no mapa.</span></div>
+    <div class="feature"><i class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></i><b>Agora no ponto</b><span>Água limpa ou suja, confirmada por quem está lá.</span></div>
+    <div class="feature"><i class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 4h8v5a4 4 0 0 1-8 0V4zM8 6H5a3 3 0 0 0 3 4M16 6h3a3 3 0 0 1-3 4M12 13v4M8 20h8"/></svg></i><b>Sala de Troféus</b><span>Suas capturas com foto e seus pontos favoritos.</span></div>
   </div>
   <div class="more">
     <p><b>Quer ver tudo isso funcionando?</b> A previsão completa, o equipamento indicado pra cada ponto e a sua Sala de Troféus ficam no app.</p>
@@ -147,10 +181,10 @@
 <section class="wrap section" id="seguro">
   <h2>É seguro?</h2>
   <div class="safe">
-    <div class="feature"><b>Vem da Play Store</b><span>Você instala pela loja oficial do Google, nunca por arquivo mandado no WhatsApp.</span></div>
-    <div class="feature"><b>Não usa sua localização</b><span>O app não pede o GPS do celular.</span></div>
-    <div class="feature"><b>Gratuito e sem anúncios</b><span>Nada para pagar e nenhuma propaganda.</span></div>
-    <div class="feature"><b>Seus dados</b><span>Só o e-mail para a conta, e dá para apagar a conta quando quiser. Veja a <a href="privacidade/">política de privacidade</a>.</span></div>
+    <div class="feature"><i class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16l-1-4H5L4 9zM5 9v10h14V9M10 19v-5h4v5"/></svg></i><b>Vem da Play Store</b><span>Você instala pela loja oficial do Google, nunca por arquivo mandado no WhatsApp.</span></div>
+    <div class="feature"><i class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-11.5a7 7 0 0 1 11-5.7M19 9.5c0 5-7 11.5-7 11.5M3 3l18 18"/></svg></i><b>Não usa sua localização</b><span>O app não pede o GPS do celular.</span></div>
+    <div class="feature"><i class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></i><b>Gratuito e sem anúncios</b><span>Nada para pagar e nenhuma propaganda.</span></div>
+    <div class="feature"><i class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></i><b>Seus dados</b><span>Só o e-mail para a conta, e dá para apagar a conta quando quiser. Veja a <a href="privacidade/">política de privacidade</a>.</span></div>
   </div>
 </section>
 

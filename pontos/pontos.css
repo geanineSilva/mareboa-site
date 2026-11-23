@@ -8,7 +8,9 @@
   --wide: 1180px;
 }
 * { box-sizing: border-box; min-width: 0; }
-body { margin: 0; color: var(--text); font-family: var(--body); font-size: 16px; line-height: 1.6; background: var(--bg); overflow-x: clip; }
+body { margin: 0; color: var(--text); font-family: var(--body); font-size: 16px; line-height: 1.6; overflow-x: clip;
+  background: var(--bg) url(/img/fundo_mar.png) center top / 430px auto repeat; } /* fundo com ondinhas, igual ao app */
+@media (max-width: 430px) { body { background-size: 100% auto; background-repeat: repeat-y; } }
 a { color: var(--primary); }
 .wrap { max-width: var(--wide); margin: 0 auto; padding: 0 24px; }
 h1, h2, h3 { font-family: var(--title); font-weight: 700; line-height: 1.05; margin: 0; }
@@ -19,6 +21,9 @@ h3 { font-size: 28px; }
 .bar { background: var(--primary-dark); color: #fff; position: sticky; top: 0; z-index: 10; }
 .bar .wrap { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 16px; }
 .logo { font-family: var(--title); font-weight: 700; font-size: 28px; color: #fff; text-decoration: none; letter-spacing: .02em; }
+.logo { white-space: nowrap; }
+.e-onda { display: inline-block; width: .5em; height: .7em; vertical-align: baseline; overflow: visible; margin: 0 .02em 0 .03em; }
+.logo-boa { margin-left: .18em; }
 .menu { display: flex; align-items: center; gap: 26px; }
 .menu a { color: #fff; text-decoration: none; font-weight: 500; opacity: .9; }
 .menu a:hover { opacity: 1; text-decoration: underline; }
@@ -45,7 +50,7 @@ h3 { font-size: 28px; }
   .main, .side { display: contents; }
   .o1 { order: 1; } .o2 { order: 2; } .o3 { order: 3; } .o4 { order: 4; } .o5 { order: 5; }
 }
-.card { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 26px; }
+.card { background: var(--surface); border: 0; border-radius: 20px; padding: 26px; box-shadow: 0 1px 2px rgba(6,24,39,.06), 0 8px 24px rgba(6,24,39,.07); }
 @media (max-width: 600px) {
   .wrap { padding-left: 16px; padding-right: 16px; } .card { padding: 20px; } .menu a:not(.btn) { display: none; }
   .hero .wrap { padding-top: 26px; padding-bottom: 30px; } .hero p { font-size: 17px; }
@@ -100,8 +105,9 @@ h3 { font-size: 28px; }
 /* lista de pontos: grade de cartões */
 .cidade { margin-bottom: 34px; }
 .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
-.pcard { display: grid; gap: 6px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px; text-decoration: none; color: var(--text); }
-.pcard:hover { border-color: var(--primary); box-shadow: 0 6px 18px rgba(6,24,39,.08); }
+.pcard { display: grid; gap: 6px; background: var(--surface); border: 0; border-radius: 20px; padding: 20px; text-decoration: none; color: var(--text); box-shadow: 0 1px 2px rgba(6,24,39,.06), 0 8px 24px rgba(6,24,39,.07); transition: transform .2s, box-shadow .2s; }
+.pcard:hover { transform: translateY(-3px); box-shadow: 0 2px 4px rgba(6,24,39,.06), 0 14px 32px rgba(6,24,39,.12); }
+@media (prefers-reduced-motion: reduce) { .pcard, .pcard:hover { transition: none; transform: none; } }
 .pcard strong { font-family: var(--title); font-size: 26px; line-height: 1.05; color: var(--primary-dark); text-transform: uppercase; }
 .pcard span { color: var(--soft); font-size: 15px; }
 .pcard em { font-style: normal; color: var(--primary); font-weight: 700; font-size: 15px; margin-top: 6px; }

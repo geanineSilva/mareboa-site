@@ -46,7 +46,7 @@ def topo(titulo, descricao, url, extra_head=""):
 {extra_head}</head>
 <body>
 <header class="bar"><div class="wrap">
-  <a class="logo" href="/">MARÉ BOA</a>
+  <a class="logo" href="/" aria-label="Maré Boa">MAR<svg class="e-onda" viewBox="0 0 18 22" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" aria-hidden="true"><path d="M8.5 -2.5 12 -6"/><path d="M1.5 3c2.6-2.2 5-.1 7.5 0s4.9-2.2 7.5 0M1.5 11c2.6-2.2 5-.1 7.5 0s4.9-2.2 7.5 0M1.5 19c2.6-2.2 5-.1 7.5 0s4.9-2.2 7.5 0"/></svg><span class="logo-boa">BOA</span></a>
   <nav class="menu"><a href="/">Início</a><a href="/pontos/">Pontos de pesca</a><a class="btn btn-accent" href="/#testar">Quero testar</a></nav>
 </div></header>
 """
