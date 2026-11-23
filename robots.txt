@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /redefinir-senha/
+
+Sitemap: https://mareboa.app.br/sitemap.xml

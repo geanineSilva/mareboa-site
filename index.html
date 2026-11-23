@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Maré Boa · App de pesca da Grande Florianópolis</title>
 <meta name="description" content="Pontos de pesca, vento, chuva, maré e lua hora a hora na Grande Florianópolis. App gratuito, sem anúncios.">
+<link rel="canonical" href="https://mareboa.app.br/">
 <meta name="theme-color" content="#061827">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Maré Boa · Qual é a boa de hoje?">
@@ -24,164 +25,162 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Roboto:wght@400;500;700&display=swap">
+<link rel="stylesheet" href="/pontos/pontos.css">
 <style>
-/* Cores e fundo iguais aos do app (config.py: COLORS e bg/fundo_mar.png) */
-:root {
-  --primary: #0E5A7A;
-  --primary-dark: #061827;
-  --secondary: #10A9C2;
-  --accent: #FF6B2C;
-  --bg: #EDF2F5;
-  --surface: #FFFFFF;
-  --surface-soft: #E8EFF3;
-  --text: #12283A;
-  --soft: #566B7A;
-  --border: #D4DFE6;
-  --title: "Barlow Condensed", "Arial Narrow", sans-serif;
-  --body: Roboto, "Segoe UI", system-ui, sans-serif;
+/* Página inicial: usa o mesmo estilo das páginas dos pontos (pontos/pontos.css) */
+.home-hero .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 40px; align-items: center; padding-top: 56px; padding-bottom: 56px; }
+.home-hero h1 { max-width: 12ch; }
+.home-hero .btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
+.home-hero .btn-ghost { border: 2px solid rgba(255,255,255,.6); color: #fff; }
+.home-hero .facts-line { margin-top: 14px; font-size: 15px; opacity: .85; }
+.phone { justify-self: center; width: min(300px, 100%); border-radius: 32px; border: 6px solid #0B2233; box-shadow: 0 24px 60px rgba(0,0,0,.45); overflow: hidden; background: #0B2233; }
+.phone img { display: block; width: 100%; height: auto; }
+@media (max-width: 860px) { .home-hero .wrap { grid-template-columns: minmax(0, 1fr); padding-top: 30px; padding-bottom: 36px; } .phone { display: none; } }
+
+.section { padding-top: 56px; padding-bottom: 8px; }
+.section > h2 { font-size: clamp(30px, 4vw, 40px); }
+.lead { color: var(--soft); font-size: 18px; max-width: 44rem; margin: -4px 0 24px; }
+.features { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.feature { background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 22px; }
+.feature b { display: block; font-family: var(--title); font-size: 24px; line-height: 1.1; color: var(--primary-dark); text-transform: uppercase; margin-bottom: 6px; }
+.feature span { color: var(--soft); }
+@media (max-width: 900px) { .features { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .features { grid-template-columns: minmax(0, 1fr); } }
+
+.shots { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 16px; }
+.shots figure { margin: 0; }
+.shots img { width: 100%; height: auto; aspect-ratio: 9 / 16; border-radius: 18px; border: 1px solid var(--border); background: var(--surface); }
+.shots figcaption { font-size: 15px; color: var(--soft); text-align: center; margin-top: 8px; }
+.hint { display: none; font-size: 14px; color: var(--soft); margin: 6px 0 0; }
+@media (max-width: 900px) {
+  .shots { display: flex; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -16px; padding: 2px 16px 8px; }
+  .shots figure { flex: 0 0 auto; width: 190px; scroll-snap-align: start; }
+  .hint { display: block; }
 }
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-body {
-  margin: 0; color: var(--text); font-family: var(--body); font-size: 16px; line-height: 1.55;
-  background: var(--bg) url(img/fundo_mar.png) center top / 430px auto repeat;
-}
-@media (max-width: 430px) { body { background-size: 100% auto; background-repeat: repeat-y; } }
-img { max-width: 100%; display: block; }
-a { color: var(--primary); }
-.col { max-width: 44rem; margin: 0 auto; padding: 0 16px; }
 
-/* Barra do topo, como no app */
-.bar { background: linear-gradient(90deg, var(--primary-dark), var(--primary)); color: #fff; }
-.bar .col { display: flex; align-items: center; justify-content: space-between; height: 60px; }
-.logo { display: flex; align-items: center; gap: 10px; font-family: var(--title); font-weight: 700; font-size: 26px; letter-spacing: .02em; color: #fff; text-decoration: none; }
-.bar nav a { color: #fff; font-weight: 500; font-size: 15px; text-decoration: none; opacity: .9; }
-
-h1, h2 { font-family: var(--title); font-weight: 700; text-transform: uppercase; line-height: 1.02; margin: 0; }
-h2 { font-size: 30px; color: var(--primary-dark); margin: 0 0 14px; }
-main.col { padding: 20px 16px 48px; display: grid; gap: 20px; }
-main > * { min-width: 0; }
-
-.card { background: var(--surface); border: 1px solid var(--border); border-radius: 22px; padding: 22px 20px; }
-
-/* Destaque com a foto do app */
-.hero { position: relative; border-radius: 26px; overflow: hidden; color: #fff; padding: 34px 22px 26px;
-  background: linear-gradient(180deg, rgba(6,24,39,.55), rgba(6,24,39,.25) 45%, rgba(6,24,39,.7)), url(img/hero.jpg) center / cover; }
-.hero small { font-size: 18px; font-weight: 700; }
-.hero h1 { font-size: clamp(40px, 11vw, 60px); margin: 6px 0 10px; }
-.hero p { margin: 0 0 22px; font-size: 17px; max-width: 30rem; }
-.btn { display: inline-flex; align-items: center; justify-content: center; min-height: 50px; padding: 0 24px; border-radius: 999px; font-weight: 700; font-size: 17px; text-decoration: none; }
-.btn-accent { background: var(--accent); color: #fff; }
-.btn-line { border: 2px solid var(--primary); color: var(--primary); }
-.btns { display: flex; flex-wrap: wrap; gap: 10px; }
-.facts { margin: 18px 0 0; font-size: 14px; opacity: .9; }
-
-/* O que o app faz */
-.list { list-style: none; margin: 0; padding: 0; }
-.list li { padding: 12px 0; border-top: 1px solid var(--border); }
-.list li:first-child { border-top: 0; padding-top: 0; }
-.list b { display: block; font-size: 17px; color: var(--primary-dark); }
-.list span { color: var(--soft); }
-
-/* Telas */
-.shots { display: flex; gap: 12px; overflow-x: auto; scroll-snap-type: x mandatory; margin: 0 -20px; padding: 2px 20px 8px; }
-.shots figure { flex: 0 0 auto; width: 180px; margin: 0; scroll-snap-align: start; }
-.shots img { width: 100%; height: auto; aspect-ratio: 9 / 16; border-radius: 16px; border: 1px solid var(--border); }
-.shots figcaption { font-size: 14px; color: var(--soft); text-align: center; margin-top: 6px; }
-.hint { font-size: 14px; color: var(--soft); margin: 6px 0 0; }
-
-/* Como testar */
-.steps { margin: 0 0 20px; padding: 0; list-style: none; counter-reset: s; }
-.steps li { position: relative; padding: 0 0 14px 44px; counter-increment: s; }
-.steps li::before { content: counter(s); position: absolute; left: 0; top: -2px; width: 30px; height: 30px; border-radius: 50%; background: var(--surface-soft); color: var(--primary); font-weight: 700; display: grid; place-items: center; }
+.band .testar { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 32px; align-items: start; }
+.testar h2 { color: #fff; }
+.testar p { margin: 0 0 18px; opacity: .9; }
+.steps { margin: 0; padding: 0; list-style: none; counter-reset: s; display: grid; gap: 16px; }
+.steps li { position: relative; padding-left: 48px; counter-increment: s; }
+.steps li::before { content: counter(s); position: absolute; left: 0; top: -2px; width: 34px; height: 34px; border-radius: 50%; background: var(--accent); color: #fff; font-weight: 700; display: grid; place-items: center; }
 .steps b { display: block; }
-.steps span { color: var(--soft); }
-.note { font-size: 14px; color: var(--soft); margin: 14px 0 0; }
+.steps span { opacity: .85; }
+.testar .btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+.testar .btn-ghost { border: 2px solid rgba(255,255,255,.6); color: #fff; }
+.testar .note { font-size: 14px; opacity: .8; margin: 14px 0 0; }
+@media (max-width: 860px) { .band .testar { grid-template-columns: minmax(0, 1fr); gap: 20px; } }
 
-
-footer { text-align: center; color: var(--soft); font-size: 14px; padding: 0 16px 36px; }
-footer a { color: var(--soft); }
+.safe { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+@media (max-width: 900px) { .safe { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 560px) { .safe { grid-template-columns: minmax(0, 1fr); } }
+.quem { padding-bottom: 56px; }
+.quem .card p { margin: 0; color: var(--soft); font-size: 17px; }
 </style>
 </head>
 <body>
 
-<header class="bar">
-  <div class="col">
-    <a class="logo" href="./">
-      <svg width="26" height="22" viewBox="0 0 26 22" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><path d="M2 5c3.5-3 7.5 3 11 0s7.5 3 11 0M2 11c3.5-3 7.5 3 11 0s7.5 3 11 0M2 17c3.5-3 7.5 3 11 0s7.5 3 11 0"/></svg>
-      MARÉ BOA
-    </a>
-    <nav><a href="#testar">Quero testar</a></nav>
-  </div>
-</header>
+<header class="bar"><div class="wrap">
+  <a class="logo" href="/">MARÉ BOA</a>
+  <nav class="menu"><a href="#app">O app</a><a href="/pontos/">Pontos de pesca</a><a href="#seguro">É seguro?</a><a class="btn btn-accent" href="#testar">Quero testar</a></nav>
+</div></header>
 
-<main class="col">
-  <section class="hero">
-    <small>App de pesca da Grande Florianópolis</small>
+<section class="hero home-hero"><div class="wrap">
+  <div>
+    <div class="where">App de pesca da Grande Florianópolis</div>
     <h1>Qual é a boa de hoje?</h1>
     <p>Vento, chuva, maré e lua hora a hora, para cada ponto de praia, costão e rio.</p>
-    <a class="btn btn-accent" href="#testar">Quero testar</a>
-    <p class="facts">Gratuito · Sem anúncios · Para Android</p>
-  </section>
-
-  <section class="card">
-    <h2>O que o app faz</h2>
-    <ul class="list">
-      <li><b>Previsão de pesca por hora</b><span>Junta vento, chuva, ondas, maré e horário e mostra a hora boa e a hora de evitar.</span></li>
-      <li><b>Maré, vento e chuva</b><span>Maré, vento, rajadas, chuva e pressão ao longo do dia.</span></li>
-      <li><b>Fase da lua</b><span>Lua do dia e horário do nascer e do pôr do sol.</span></li>
-      <li><b>Pontos de pesca</b><span>Praias, costões e rios de Palhoça e Pinheira, Sul da Ilha, Leste e Lagoa e mais. Abre direto no Google Maps.</span></li>
-      <li><b>Agora no ponto</b><span>Mostra se a água deve estar limpa, turva ou suja, e quem está lá pode confirmar.</span></li>
-      <li><b>Sala de Troféus</b><span>Guarde suas capturas com foto e seus pontos favoritos.</span></li>
-    </ul>
-  </section>
-
-  <section class="card">
-    <h2>Telas do app</h2>
-    <div class="shots" tabindex="0" aria-label="Telas do app">
-      <figure><img src="img/1-inicio.webp" alt="Tela inicial" width="540" height="960" loading="lazy"><figcaption>Início</figcaption></figure>
-      <figure><img src="img/2-pontos.webp" alt="Lista de pontos de pesca" width="540" height="960" loading="lazy"><figcaption>Pontos</figcaption></figure>
-      <figure><img src="img/3-ponto.webp" alt="Detalhe de um ponto" width="540" height="960" loading="lazy"><figcaption>Detalhe do ponto</figcaption></figure>
-      <figure><img src="img/4-previsao-por-hora.webp" alt="Previsão por hora" width="540" height="960" loading="lazy"><figcaption>Previsão por hora</figcaption></figure>
-      <figure><img src="img/5-agora-no-ponto.webp" alt="Agora no ponto" width="540" height="960" loading="lazy"><figcaption>Agora no ponto</figcaption></figure>
+    <div class="btns">
+      <a class="btn btn-accent" href="#testar">Quero testar</a>
+      <a class="btn btn-ghost" href="/pontos/">Ver os pontos</a>
     </div>
-    <p class="hint">Arraste para o lado para ver mais.</p>
-  </section>
+    <p class="facts-line">Gratuito · Sem anúncios · Para Android</p>
+  </div>
+  <div class="phone"><img src="img/1-inicio.webp" alt="Tela inicial do app Maré Boa" width="540" height="960"></div>
+</div></section>
 
-  <section class="card" id="testar">
+<section class="wrap section" id="app">
+  <h2>O que o app faz</h2>
+  <p class="lead">Tudo o que você olharia em vários apps, num lugar só, pensado pra quem pesca na região.</p>
+  <div class="features">
+    <div class="feature"><b>Previsão de pesca por hora</b><span>Junta vento, chuva, ondas, maré e horário e mostra a hora boa e a hora de evitar.</span></div>
+    <div class="feature"><b>Maré, vento e chuva</b><span>Maré, vento, rajadas, chuva e pressão ao longo do dia.</span></div>
+    <div class="feature"><b>Fase da lua</b><span>Lua do dia e horário do nascer e do pôr do sol.</span></div>
+    <div class="feature"><b>Pontos de pesca</b><span>Praias, costões e rios de Palhoça e Pinheira, Sul da Ilha, Leste e Lagoa e mais. Abre direto no Google Maps.</span></div>
+    <div class="feature"><b>Agora no ponto</b><span>Mostra se a água deve estar limpa, turva ou suja, e quem está lá pode confirmar.</span></div>
+    <div class="feature"><b>Sala de Troféus</b><span>Guarde suas capturas com foto e seus pontos favoritos.</span></div>
+  </div>
+</section>
+
+<section class="wrap section">
+  <h2>Telas do app</h2>
+  <div class="shots" tabindex="0" aria-label="Telas do app">
+    <figure><img src="img/1-inicio.webp" alt="Tela inicial" width="540" height="960" loading="lazy"><figcaption>Início</figcaption></figure>
+    <figure><img src="img/2-pontos.webp" alt="Lista de pontos de pesca" width="540" height="960" loading="lazy"><figcaption>Pontos</figcaption></figure>
+    <figure><img src="img/3-ponto.webp" alt="Detalhe de um ponto" width="540" height="960" loading="lazy"><figcaption>Detalhe do ponto</figcaption></figure>
+    <figure><img src="img/4-previsao-por-hora.webp" alt="Previsão por hora" width="540" height="960" loading="lazy"><figcaption>Previsão por hora</figcaption></figure>
+    <figure><img src="img/5-agora-no-ponto.webp" alt="Agora no ponto" width="540" height="960" loading="lazy"><figcaption>Agora no ponto</figcaption></figure>
+  </div>
+  <p class="hint">Arraste para o lado para ver mais.</p>
+</section>
+
+<section class="wrap section" id="pontos">
+  <h2>Como está pra pescar hoje</h2>
+  <p class="lead">Veja a condição de agora em cada ponto: vento, chuva, maré e o que costuma sair.</p>
+  <div class="cards">
+<!-- pontos:inicio -->
+    <a class="pcard" href="/pontos/beira-mar-norte/"><strong>Beira-mar Norte</strong><span>Florianópolis · Água abrigada</span><em>Ver condição de agora</em></a>
+    <a class="pcard" href="/pontos/canal-da-barra-da-lagoa/"><strong>Canal da Barra da Lagoa</strong><span>Florianópolis · Água abrigada</span><em>Ver condição de agora</em></a>
+    <a class="pcard" href="/pontos/canasvieiras/"><strong>Canasvieiras</strong><span>Florianópolis · Água abrigada</span><em>Ver condição de agora</em></a>
+    <a class="pcard" href="/pontos/lagoa-da-conceicao/"><strong>Lagoa da Conceição</strong><span>Florianópolis · Água abrigada</span><em>Ver condição de agora</em></a>
+    <a class="pcard" href="/pontos/ponta-do-papagaio/"><strong>Ponta do Papagaio</strong><span>Palhoça · Praia</span><em>Ver condição de agora</em></a>
+    <a class="pcard" href="/pontos/praia-da-pinheira/"><strong>Praia da Pinheira</strong><span>Palhoça · Praia</span><em>Ver condição de agora</em></a>
+    <a class="pcard" href="/pontos/praia-de-fora/"><strong>Praia de Fora</strong><span>Palhoça · Água abrigada</span><em>Ver condição de agora</em></a>
+    <a class="pcard" href="/pontos/praia-do-sonho/"><strong>Praia do Sonho</strong><span>Palhoça · Praia e costão</span><em>Ver condição de agora</em></a>
+    <a class="pcard" href="/pontos/rio-cubatao/"><strong>Rio Cubatão</strong><span>Palhoça · Rio</span><em>Ver condição de agora</em></a>
+    <a class="pcard" href="/pontos/sambaqui/"><strong>Sambaqui</strong><span>Florianópolis · Água abrigada</span><em>Ver condição de agora</em></a>
+<!-- pontos:fim -->
+  </div>
+  <p><a href="/pontos/">Ver todos os pontos</a></p>
+</section>
+
+<section class="band section-band" id="testar" style="margin-top:56px"><div class="wrap testar">
+  <div>
     <h2>Quero testar</h2>
-    <p style="margin:0 0 16px;color:var(--soft)">O app está em teste no Android antes de sair para todo mundo na Play Store.</p>
-    <ol class="steps">
-      <li><b>Mande o seu Gmail</b><span>O mesmo que você usa na Play Store do celular.</span></li>
-      <li><b>Aceite o convite</b><span>Abra o link de teste no celular e toque em “Participar do teste”.</span></li>
-      <li><b>Instale pela Play Store</b><span>Na mesma página, toque no link para baixar e instale pela Play Store como qualquer app.</span></li>
-    </ol>
+    <p>O app está em teste no Android antes de sair para todo mundo na Play Store.</p>
     <div class="btns">
       <a class="btn btn-accent" href="mailto:mareboa.app@gmail.com?subject=Quero%20testar%20o%20Mar%C3%A9%20Boa&amp;body=Oi!%20Quero%20testar%20o%20Mar%C3%A9%20Boa.%20Meu%20Gmail%20%C3%A9%3A%20">Mandar meu Gmail</a>
-      <a class="btn btn-line" href="https://play.google.com/apps/testing/io.github.geaninesilva.mare_boa">Abrir o link de teste</a>
+      <a class="btn btn-ghost" href="https://play.google.com/apps/testing/io.github.geaninesilva.mare_boa">Abrir o link de teste</a>
     </div>
-    <p class="note">Também dá para mandar o Gmail pelo WhatsApp do grupo.</p>
-  </section>
+    <p class="note">Também dá para mandar o Gmail pelo WhatsApp do grupo, ou escrever para mareboa.app@gmail.com.</p>
+  </div>
+  <ol class="steps">
+    <li><b>Mande o seu Gmail</b><span>O mesmo que você usa na Play Store do celular.</span></li>
+    <li><b>Aceite o convite</b><span>Abra o link de teste no celular e toque em “Participar do teste”.</span></li>
+    <li><b>Instale pela Play Store</b><span>Na mesma página, toque no link para baixar e instale pela Play Store como qualquer app.</span></li>
+  </ol>
+</div></section>
 
-  <section class="card">
-    <h2>É seguro?</h2>
-    <ul class="list">
-      <li><b>Vem da Play Store</b><span>Você instala pela loja oficial do Google, nunca por arquivo mandado no WhatsApp.</span></li>
-      <li><b>Não usa sua localização</b><span>O app não pede o GPS do celular.</span></li>
-      <li><b>Gratuito e sem anúncios</b><span>Nada para pagar e nenhuma propaganda.</span></li>
-      <li><b>Seus dados</b><span>Só o e-mail para a conta, e dá para apagar a conta quando quiser. Veja a <a href="privacidade/">política de privacidade</a>.</span></li>
-    </ul>
-  </section>
+<section class="wrap section" id="seguro">
+  <h2>É seguro?</h2>
+  <div class="safe">
+    <div class="feature"><b>Vem da Play Store</b><span>Você instala pela loja oficial do Google, nunca por arquivo mandado no WhatsApp.</span></div>
+    <div class="feature"><b>Não usa sua localização</b><span>O app não pede o GPS do celular.</span></div>
+    <div class="feature"><b>Gratuito e sem anúncios</b><span>Nada para pagar e nenhuma propaganda.</span></div>
+    <div class="feature"><b>Seus dados</b><span>Só o e-mail para a conta, e dá para apagar a conta quando quiser. Veja a <a href="privacidade/">política de privacidade</a>.</span></div>
+  </div>
+</section>
 
-  <section class="card">
-    <h2>Quem fez</h2>
-    <p style="margin:0;color:var(--soft)">O Maré Boa é um projeto de uma estudante da PUC, feito em Floripa por quem pesca, para quem pesca. Sugestão de ponto ou achou algum erro? Escreva para <a href="mailto:mareboa.app@gmail.com">mareboa.app@gmail.com</a>.</p>
-  </section>
-</main>
+<section class="wrap section quem">
+  <h2>Quem fez</h2>
+  <div class="card"><p>O Maré Boa é um projeto de uma estudante da PUC, feito em Floripa por quem pesca, para quem pesca. Sugestão de ponto ou achou algum erro? Escreva para <a href="mailto:mareboa.app@gmail.com">mareboa.app@gmail.com</a>.</p></div>
+</section>
 
-<footer>
-  © 2026 Maré Boa · Grande Florianópolis, SC · <a href="privacidade/">Política de privacidade</a>
-</footer>
+<footer><div class="wrap">
+  <div><strong>MARÉ BOA</strong><p>App de pesca da Grande Florianópolis. © 2026 Maré Boa · Grande Florianópolis, SC.</p></div>
+  <div><a href="/pontos/">Pontos de pesca</a><a href="#testar">Quero testar o app</a></div>
+  <div><a href="privacidade/">Política de privacidade</a><a href="mailto:mareboa.app@gmail.com">mareboa.app@gmail.com</a></div>
+</div></footer>
 
 </body>
 </html>
