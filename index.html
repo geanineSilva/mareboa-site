@@ -60,6 +60,15 @@
 .testar .note { font-size: 14px; opacity: .8; margin: 14px 0 0; }
 @media (max-width: 860px) { .band .testar { grid-template-columns: minmax(0, 1fr); gap: 20px; } }
 
+.trust { list-style: none; margin: 0; padding: 8px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); background: var(--surface); border-radius: 20px; box-shadow: 0 1px 2px rgba(6,24,39,.06), 0 8px 24px rgba(6,24,39,.07); }
+.trust li { display: flex; gap: 12px; align-items: flex-start; padding: 16px; }
+.trust li + li { border-left: 1px solid var(--border); }
+.trust b { display: block; color: var(--primary-dark); font-size: 16px; }
+.trust span { display: block; color: var(--soft); font-size: 14px; line-height: 1.45; margin-top: 2px; }
+.ico.sm { width: 38px; height: 38px; margin: 0; flex: 0 0 auto; }
+.ico.sm svg { width: 20px; height: 20px; }
+@media (max-width: 900px) { .trust { grid-template-columns: repeat(2, minmax(0, 1fr)); } .trust li + li { border-left: 0; } .trust li:nth-child(n+3) { border-top: 1px solid var(--border); } .trust li:nth-child(even) { border-left: 1px solid var(--border); } }
+@media (max-width: 560px) { .trust { grid-template-columns: minmax(0, 1fr); } .trust li:nth-child(even) { border-left: 0; } .trust li + li { border-top: 1px solid var(--border); } }
 .safe { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
 @media (max-width: 900px) { .safe { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .safe { grid-template-columns: minmax(0, 1fr); } }
@@ -91,7 +100,7 @@
 
 <header class="bar"><div class="wrap">
   <a class="logo" href="/" aria-label="Maré Boa">MAR<svg class="e-onda" viewBox="0 0 18 22" fill="none" stroke="currentColor" stroke-width="3.6" stroke-linecap="round" aria-hidden="true"><path d="M8.5 -2.5 12 -6"/><path d="M1.5 3c2.6-2.2 5-.1 7.5 0s4.9-2.2 7.5 0M1.5 11c2.6-2.2 5-.1 7.5 0s4.9-2.2 7.5 0M1.5 19c2.6-2.2 5-.1 7.5 0s4.9-2.2 7.5 0"/></svg><span class="logo-boa">BOA</span></a>
-  <nav class="menu"><a href="#app">O app</a><a href="/pontos/">Pontos de pesca</a><a href="#seguro">É seguro?</a><a class="btn btn-accent" href="#testar">Quero testar</a></nav>
+  <nav class="menu"><a href="#app">O app</a><a href="/pontos/">Pontos de pesca</a><a class="btn btn-accent" href="#testar">Quero testar</a></nav>
 </div></header>
 
 <section class="hero home-hero"><div class="wrap">
@@ -176,16 +185,6 @@
     <li><b>Instale pela Play Store</b><span>Na mesma página, toque no link para baixar e instale pela Play Store como qualquer app.</span></li>
   </ol>
 </div></section>
-
-<section class="wrap section" id="seguro" style="padding-bottom:56px">
-  <h2>É seguro?</h2>
-  <div class="safe">
-    <div class="feature"><i class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16l-1-4H5L4 9zM5 9v10h14V9M10 19v-5h4v5"/></svg></i><b>Vem da Play Store</b><span>Você instala pela loja oficial do Google, nunca por arquivo mandado no WhatsApp.</span></div>
-    <div class="feature"><i class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.5-7-11.5a7 7 0 0 1 11-5.7M19 9.5c0 5-7 11.5-7 11.5M3 3l18 18"/></svg></i><b>Não usa sua localização</b><span>O app não pede o GPS do celular.</span></div>
-    <div class="feature"><i class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></i><b>Gratuito e sem anúncios</b><span>Nada para pagar e nenhuma propaganda.</span></div>
-    <div class="feature"><i class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></i><b>Seus dados</b><span>Só o e-mail para a conta, e dá para apagar a conta quando quiser. Veja a <a href="privacidade/">política de privacidade</a>.</span></div>
-  </div>
-</section>
 
 <footer><div class="wrap">
   <div><strong>MARÉ BOA</strong><p>App de pesca da Grande Florianópolis. © 2026 Maré Boa · Grande Florianópolis, SC.</p></div>
