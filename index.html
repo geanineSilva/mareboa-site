@@ -28,12 +28,14 @@
 <link rel="stylesheet" href="/pontos/pontos.css">
 <style>
 /* Página inicial: usa o mesmo estilo das páginas dos pontos (pontos/pontos.css) */
-.home-hero .wrap { display: grid; grid-template-columns: minmax(0, 1fr); gap: 40px; align-items: center; padding-top: 56px; padding-bottom: 56px; }
-.home-hero h1 { max-width: 14ch; }
+.home-hero .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 40px; align-items: center; padding-top: 56px; padding-bottom: 56px; }
+.home-hero h1 { max-width: 12ch; }
+.phone { justify-self: center; width: min(300px, 100%); border-radius: 32px; border: 6px solid #0B2233; box-shadow: 0 24px 60px rgba(0,0,0,.45); overflow: hidden; background: #0B2233; }
+.phone img { display: block; width: 100%; height: auto; }
 .home-hero .btns { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 26px; }
 .home-hero .btn-ghost { border: 2px solid rgba(255,255,255,.6); color: #fff; }
 .home-hero .facts-line { margin-top: 14px; font-size: 15px; opacity: .85; }
-@media (max-width: 860px) { .home-hero .wrap { padding-top: 30px; padding-bottom: 36px; } }
+@media (max-width: 860px) { .home-hero .wrap { grid-template-columns: minmax(0, 1fr); padding-top: 30px; padding-bottom: 36px; } .phone { display: none; } }
 .section { padding-top: 56px; padding-bottom: 8px; }
 .section > h2 { font-size: clamp(30px, 4vw, 40px); }
 .lead { color: var(--soft); font-size: 18px; max-width: 44rem; margin: -4px 0 24px; }
@@ -83,6 +85,7 @@
     </div>
     <p class="facts-line">Gratuito · Sem anúncios · Para Android</p>
   </div>
+  <div class="phone"><img src="img/1-inicio.webp" alt="Tela inicial do app Maré Boa" width="540" height="960"></div>
 </div></section>
 
 <section class="wrap section" id="app">
