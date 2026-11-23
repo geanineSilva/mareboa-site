@@ -64,6 +64,8 @@
 @media (max-width: 900px) { .safe { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .safe { grid-template-columns: minmax(0, 1fr); } }
 .quem { padding-bottom: 56px; }
+.more { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: 20px; padding: 20px 24px; border-radius: 16px; background: var(--surface-soft); }
+.more p { margin: 0; max-width: 46rem; }
 .quem .card p { margin: 0; color: var(--soft); font-size: 17px; }
 </style>
 </head>
@@ -92,12 +94,16 @@
   <h2>O que o app faz</h2>
   <p class="lead">Tudo o que você olharia em vários apps, num lugar só, pensado pra quem pesca na região.</p>
   <div class="features">
-    <div class="feature"><b>Previsão de pesca por hora</b><span>Junta vento, chuva, ondas, maré e horário e mostra a hora boa e a hora de evitar.</span></div>
-    <div class="feature"><b>Maré, vento e chuva</b><span>Maré, vento, rajadas, chuva e pressão ao longo do dia.</span></div>
-    <div class="feature"><b>Fase da lua</b><span>Lua do dia e horário do nascer e do pôr do sol.</span></div>
-    <div class="feature"><b>Pontos de pesca</b><span>Praias, costões e rios de Palhoça e Pinheira, Sul da Ilha, Leste e Lagoa e mais. Abre direto no Google Maps.</span></div>
-    <div class="feature"><b>Agora no ponto</b><span>Mostra se a água deve estar limpa, turva ou suja, e quem está lá pode confirmar.</span></div>
-    <div class="feature"><b>Sala de Troféus</b><span>Guarde suas capturas com foto e seus pontos favoritos.</span></div>
+    <div class="feature"><b>Previsão de pesca por hora</b><span>A hora boa e a hora de evitar em cada ponto.</span></div>
+    <div class="feature"><b>Maré, vento e chuva</b><span>Tudo junto, ao longo do dia.</span></div>
+    <div class="feature"><b>Fase da lua</b><span>Lua do dia, nascer e pôr do sol.</span></div>
+    <div class="feature"><b>Pontos de pesca</b><span>Praias, costões e rios da região, com o caminho no mapa.</span></div>
+    <div class="feature"><b>Agora no ponto</b><span>Água limpa ou suja, confirmada por quem está lá.</span></div>
+    <div class="feature"><b>Sala de Troféus</b><span>Suas capturas com foto e seus pontos favoritos.</span></div>
+  </div>
+  <div class="more">
+    <p><b>Quer ver tudo isso funcionando?</b> A previsão completa, o equipamento indicado pra cada ponto e a sua Sala de Troféus ficam no app.</p>
+    <a class="btn btn-accent" href="#testar">Baixe o app</a>
   </div>
 </section>
 
