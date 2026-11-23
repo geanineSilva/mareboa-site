@@ -42,7 +42,7 @@ def topo(titulo, descricao, url, extra_head=""):
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Roboto:wght@400;500;700&display=swap">
-<link rel="stylesheet" href="/pontos/pontos.css?v=3">
+<link rel="stylesheet" href="/pontos/pontos.css?v=4">
 {extra_head}</head>
 <body>
 <header class="bar"><div class="wrap">

@@ -25,7 +25,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Roboto:wght@400;500;700&display=swap">
-<link rel="stylesheet" href="/pontos/pontos.css?v=3">
+<link rel="stylesheet" href="/pontos/pontos.css?v=4">
 <style>
 /* Página inicial: usa o mesmo estilo das páginas dos pontos (pontos/pontos.css) */
 .home-hero .wrap { display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, .9fr); gap: 40px; align-items: center; padding-top: 56px; padding-bottom: 56px; }
@@ -63,10 +63,8 @@
 .safe { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
 @media (max-width: 900px) { .safe { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .safe { grid-template-columns: minmax(0, 1fr); } }
-.quem { padding-bottom: 56px; }
 .more { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-top: 20px; padding: 20px 24px; border-radius: 16px; background: var(--surface-soft); }
 .more p { margin: 0; max-width: 46rem; }
-.quem .card p { margin: 0; color: var(--soft); font-size: 17px; }
 
 /* cards modernos: sem borda, sombra suave, ícone em círculo como no app */
 .feature { border: 0; border-radius: 20px; padding: 24px; box-shadow: 0 1px 2px rgba(6,24,39,.06), 0 8px 24px rgba(6,24,39,.07); transition: transform .2s, box-shadow .2s; }
@@ -79,13 +77,14 @@
 .pronto { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 36px; align-items: center; }
 .pronto .lead { margin: 0; font-size: 19px; color: var(--text); }
 .vs { display: grid; gap: 12px; }
-.vs-row { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); align-items: stretch; border-radius: 18px; overflow: hidden; background: var(--surface); box-shadow: 0 1px 2px rgba(6,24,39,.06), 0 8px 24px rgba(6,24,39,.07); }
-.vs-old { padding: 16px 18px; color: var(--soft); background: var(--surface-soft); display: flex; flex-direction: column; justify-content: center; font-size: 15px; }
-.vs-old small { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: .04em; opacity: .8; }
-.vs-new { padding: 16px 18px; font-weight: 700; color: var(--primary-dark); display: flex; align-items: center; }
+.vs-row { display: flex; gap: 16px; align-items: center; padding: 16px 20px; border-radius: 18px; background: var(--surface); box-shadow: 0 1px 2px rgba(6,24,39,.06), 0 8px 24px rgba(6,24,39,.07); }
+.vs-row b { display: block; font-size: 17px; line-height: 1.35; color: var(--primary-dark); }
+.vs-row s { display: block; font-size: 14px; color: var(--soft); text-decoration-color: rgba(200,53,43,.6); text-decoration-thickness: 1.5px; margin-bottom: 3px; }
+.vs-ico { flex: 0 0 auto; display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; }
+.vs-ico svg { width: 22px; height: 22px; }
+.vs-ico.ok { background: #DDF3E6; color: var(--ok); } .vs-ico.bad { background: #FBE3E1; color: var(--bad); } .vs-ico.warn { background: #FCF0CF; color: #B07F00; }
 .vs-note { margin: 2px 0 0; font-size: 13px; color: var(--soft); }
 @media (max-width: 860px) { .pronto { grid-template-columns: minmax(0, 1fr); gap: 22px; } }
-@media (max-width: 480px) { .vs-row { grid-template-columns: minmax(0, 1fr); } .vs-old { padding-bottom: 6px; background: var(--surface); } .vs-new { padding-top: 0; } }
 </style>
 </head>
 <body>
@@ -116,9 +115,9 @@
       <p class="lead">Ninguém precisa virar especialista em maré, lua ou carta náutica pra curtir uma boa pescaria. O Maré Boa cuida dessa parte e te entrega a resposta pronta, num jeito fácil de entender. Você só escolhe o ponto e aproveita.</p>
     </div>
     <div class="vs">
-      <div class="vs-row"><span class="vs-old"><small>Em vez de</small>Tábua de maré cheia de números</span><span class="vs-new">“Amanhã, melhor janela: 5h às 11h”</span></div>
-      <div class="vs-row"><span class="vs-old"><small>Em vez de</small>Mapa de vento colorido</span><span class="vs-new">“Evite agora: vento forte, rajadas de 54 km/h”</span></div>
-      <div class="vs-row"><span class="vs-old"><small>Em vez de</small>Ficar na dúvida se a água tá boa</span><span class="vs-new">“Água pode estar turva: choveu 26 mm em 3 dias”</span></div>
+      <div class="vs-row"><i class="vs-ico ok"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></i><div><s>Tábua de maré cheia de números</s><b>Amanhã, melhor janela: 5h às 11h</b></div></div>
+      <div class="vs-row"><i class="vs-ico bad"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h11a3 3 0 1 0-3-3M3 12h15a3 3 0 1 1-3 3M3 16h8"/></svg></i><div><s>Mapa de vento colorido</s><b>Evite agora: vento forte, rajadas de 54 km/h</b></div></div>
+      <div class="vs-row"><i class="vs-ico warn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></i><div><s>Ficar na dúvida se a água tá boa</s><b>Água pode estar turva: choveu 26 mm em 3 dias</b></div></div>
       <p class="vs-note">Exemplos de respostas do app.</p>
     </div>
   </div>
@@ -178,7 +177,7 @@
   </ol>
 </div></section>
 
-<section class="wrap section" id="seguro">
+<section class="wrap section" id="seguro" style="padding-bottom:56px">
   <h2>É seguro?</h2>
   <div class="safe">
     <div class="feature"><i class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9h16l-1-4H5L4 9zM5 9v10h14V9M10 19v-5h4v5"/></svg></i><b>Vem da Play Store</b><span>Você instala pela loja oficial do Google, nunca por arquivo mandado no WhatsApp.</span></div>
@@ -186,11 +185,6 @@
     <div class="feature"><i class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg></i><b>Gratuito e sem anúncios</b><span>Nada para pagar e nenhuma propaganda.</span></div>
     <div class="feature"><i class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg></i><b>Seus dados</b><span>Só o e-mail para a conta, e dá para apagar a conta quando quiser. Veja a <a href="privacidade/">política de privacidade</a>.</span></div>
   </div>
-</section>
-
-<section class="wrap section quem">
-  <h2>Quem fez</h2>
-  <div class="card"><p>O Maré Boa é um projeto de uma estudante da PUC, feito em Floripa por quem pesca, para quem pesca. Sugestão de ponto ou achou algum erro? Escreva para <a href="mailto:mareboa.app@gmail.com">mareboa.app@gmail.com</a>.</p></div>
 </section>
 
 <footer><div class="wrap">
