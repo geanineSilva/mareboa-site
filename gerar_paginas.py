@@ -42,7 +42,7 @@ def topo(titulo, descricao, url, extra_head=""):
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Roboto:wght@400;500;700&display=swap">
-<link rel="stylesheet" href="/pontos/pontos.css">
+<link rel="stylesheet" href="/pontos/pontos.css?v=3">
 {extra_head}</head>
 <body>
 <header class="bar"><div class="wrap">
@@ -139,7 +139,7 @@ def pagina_ponto(p, todos, hoje):
     </section>
   </aside>
 </div>
-<script src="/pontos/condicoes.js"></script>
+<script src="/pontos/condicoes.js?v=3"></script>
 <script>
   MareBoa.mostrar(document.getElementById("condicao"), {p['lat']}, {p['lon']}, {json.dumps(p['tipo'])});
   MareBoa.peixesDoMes(document.getElementById("peixes"), {json.dumps(p['peixes'], ensure_ascii=False)});
